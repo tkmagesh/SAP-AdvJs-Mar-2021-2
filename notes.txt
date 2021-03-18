@@ -126,3 +126,9 @@ Function Invocation Patterns  (6 patterns)
     Using the 'call' method of the function
     
     Using the 'apply' method of the function
+
+    As an  immediately Invoked Function Expression (IIFE)
+
+
+Pure Function
+    If a function invocation can be replaced with the result of the function without affecting the outcome.
