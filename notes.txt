@@ -119,5 +119,10 @@ Implicit values in a function
 Function Invocation Patterns  (6 patterns)
     When a function is invoked as a method of an obj
         this -> obj
+
     When a function is invoked as a 'function'
         this -> global (window in the browser)
+
+    Using the 'call' method of the function
+    
+    Using the 'apply' method of the function
