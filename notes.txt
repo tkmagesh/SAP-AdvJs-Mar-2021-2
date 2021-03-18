@@ -1,0 +1,103 @@
+Primary Skillset
+Rate yourself in JavaScript - 1 - 10
+Specific Expectation
+
+Commence - 9:00 (1:30)
+Tea break - 10:45 (15 mins) (3:15)
+Lunch break - 12:00 (45 mins) (4:30)
+Commence - 12:45 (5:15)
+Tea break - 2:30 (7:00) (15 mins)
+Wind up - 4:00 (8:30)
+
+JavaScript
+    Data types
+        number, string, boolean, object, undefined, function
+
+    Programming Constructs
+        var, if else, switch case, while, for, throw, try catch finally, function
+
+    APIs
+        Math, Array, Date, RegEx, Error, timer (setTimeout, clearTimeout, setInterval, clearInterval)
+
+    Unique Features
+
+
+Line Oriented
+Procedural
+Object Based
+Object Oriented
+Functional
+    Functions are first class citizens
+    Functions are data (object)
+        Functions can be created like objects
+        Functions can have attributes like objects
+        Functions can have methods like objects
+        Higher Order Functions
+        ======================
+        Functions can be passed as arguments to other functions
+        Functions can be returned as return values
+
+loosely typed
+dynamic
+
+
+public static class Calculator{
+    public static int add(int x, int y){
+        return x + y;
+    }
+}
+
+
+function add(x, y){
+    //return x + y;
+}
+
+function add(x,y){
+    if (typeof x !== 'number' || typeof y !== 'number')
+        throw new Error('Invalid arguments(s)!');
+    return x + y;
+}
+
+add(10,20)
+add(10,'20')
+add(10,'abc')
+add([10,20], [30,40])
+add([10,20], [30,'40'])
+add([10,20], [30,'40', 'abc'])
+add([10,20], [[30,'40', 'abc'], 50])
+add(function(){ return [10,20];} , function(){ return [[30,'40', 'abc'], 50]; })
+add([function(){ return [10,20];} , function(){ return [[30,'40', 'abc'], 50]; }])
+add(10)
+add()
+add(10,20,30,40,50)
+
+
+
+jQuery(domNode)
+jQuery([domNode1, domNode2, domNode3])
+jQuery(string)
+jQuery(fn)
+jQuery($obj)
+
+Jasmine (BDD)  (http://jasmine.github.io)
+
+    describe() -> test class
+    it() -> test case
+    expect() -> assertion api
+    matchers -> types of assertions
+        expect(result).toBe(expectedResult)
+
+        describe('A Calculator', function(){
+            it('should add 2 numbers', function(){
+                //Arrange
+                    var n1 = 10,
+                        n2 = 20,
+                        expectedResult = 30;
+
+                //Act
+                    var result = add(n1, n2);
+
+                //Assert
+                    expect(result).toBe(expectedResult);
+            });
+        });
