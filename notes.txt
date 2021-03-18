@@ -101,3 +101,23 @@ Jasmine (BDD)  (http://jasmine.github.io)
                     expect(result).toBe(expectedResult);
             });
         });
+
+Variadic functions
+
+Implicit values in a function
+    this (invocation context)
+    arguments
+        - array like object containing all the argument values passed to the function
+            - length (attribute)
+            - supports indexer
+                arguments[0]
+                arguments[1]
+
+    It doesnot matter where the function is.
+    What matters is HOW the function is invoked.
+
+Function Invocation Patterns  (6 patterns)
+    When a function is invoked as a method of an obj
+        this -> obj
+    When a function is invoked as a 'function'
+        this -> global (window in the browser)
