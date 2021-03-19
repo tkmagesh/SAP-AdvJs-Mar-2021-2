@@ -77,6 +77,45 @@ describe('Sort', function(){
         })
     })
 
+    describe('Any list by attrName/comparer', function(){
+        function sort(list, comparer){
+            var comparerFn;
+            if (typeof comparer === 'function'){
+                comparerFn = comparer;
+            }
+            if (typeof comparer === 'string'){
+                comparerFn = function(p1, p2){
+                    if (p1[comparer] < p2[comparer]) return -1;
+                    if (p1[comparer] > p2[comparer]) return +1;
+                    return 0;
+                }
+            }
+            if (typeof comparerFn !== 'function') return;
+            for(var i=0; i<list.length-1; i++)
+                for(var j=i+1; j<list.length; j++)
+                    if (comparerFn(list[i], list[j]) > 0 ){
+                        var temp = list[i];
+                        list[i] = list[j];
+                        list[j] = temp;
+                    }
+        }
+
+        describe('products by units', function(){
+            sort(products, 'units');
+            console.table(products);
+        })
+
+        describe('products by category length', function(){
+            var comparerProductsByCategoryLength = function(p1, p2){
+                if (p1.category.length < p2.category.length) return -1;
+                if (p1.category.length > p2.category.length) return 1;
+                return 0;
+            }
+            sort(products, comparerProductsByCategoryLength);
+            console.table(products);
+        })
+    })
+
 });
 
 /* describe('Filter', function(){
