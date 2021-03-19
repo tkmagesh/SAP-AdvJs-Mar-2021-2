@@ -159,3 +159,24 @@ a || b
 truthy
     if the boolean equivalent of a value is true, then the value is 'truthy'
     if the boolean equivalent of a value is false, then the value is 'falsy'
+
+ES6 (ES2015 / ECMAScript 2015 / ESNext )
+1. let
+2. const
+3. Array destructuring
+4. Rest operator (Array)
+5. Spread Operator (Array)
+6. Object destructuring
+7. Rest operator (Object)
+8. Spread Operator (Object)
+9. default arguments
+10. arrow functions
+11. symbol
+12. template strings
+13. for of
+14. generator functions
+15. classes
+16. null coalescing operator
+
+http://es6-features.org
+

@@ -41,9 +41,7 @@ describe('Sort', function(){
             for(var i=0; i<products.length-1; i++)
                 for(var j=i+1; j<products.length; j++)
                     if (products[i].id > products[j].id){
-                        var temp = products[i];
-                        products[i] = products[j];
-                        products[j] = temp;
+                        [products[i], products[j]] = [products[j], products[i]]
                     }
         }
         sortProductsById()
@@ -55,9 +53,7 @@ describe('Sort', function(){
             for(var i=0; i<list.length-1; i++)
                 for(var j=i+1; j<list.length; j++)
                     if (list[i][attrName] > list[j][attrName]){
-                        var temp = list[i];
-                        list[i] = list[j];
-                        list[j] = temp;
+                        [list[i], list[j]] = [list[j], list[i]]
                     }
         }
         describe('Products by cost', function(){
@@ -71,9 +67,7 @@ describe('Sort', function(){
             for(var i=0; i<list.length-1; i++)
                 for(var j=i+1; j<list.length; j++)
                     if (comparerFn(list[i], list[j]) > 0 ){
-                        var temp = list[i];
-                        list[i] = list[j];
-                        list[j] = temp;
+                        [list[i], list[j]] = [list[j], list[i]]
                     }
         }
         describe('Products by value [cost * units]', function(){
@@ -106,9 +100,7 @@ describe('Sort', function(){
             for(var i=0; i<list.length-1; i++)
                 for(var j=i+1; j<list.length; j++)
                     if (comparerFn(list[i], list[j]) > 0 ){
-                        var temp = list[i];
-                        list[i] = list[j];
-                        list[j] = temp;
+                        [list[i], list[j]] = [list[j], list[i]]
                     }
         }
 
@@ -153,16 +145,19 @@ describe('Filter', function(){
         }
 
         //composite pattern
-        function negate(predicate){
+        /* function negate(predicate){
             return function(){
                 return !predicate.apply(this, arguments);
             }
-        }
+        } */
+        const negate = predicate => (...args) => !predicate(...args);
 
         describe('Products by cost', function(){
-            var costlyProductPredicate = function(p){
+            /* var costlyProductPredicate = function(p){
                 return p.cost > 50;
-            };
+            }; */
+            var costlyProductPredicate = p => p.cost > 50;
+            
             describe('filter costly products [cost > 50]', function(){
                 var costlyProducts = filter(products, costlyProductPredicate);
                 console.table(costlyProducts);
@@ -225,7 +220,8 @@ describe('groupBy', function(){
                     if (typeof result[key] === 'undefined')
                         result[key] = [];
                 */
-                result[key] = result[key] || [];
+                //result[key] = result[key] || [];
+                result[key] = result[key] ?? [];
                 result[key].push(list[i]);
             }
             return result;
