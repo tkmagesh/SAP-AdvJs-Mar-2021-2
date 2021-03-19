@@ -1,0 +1,37 @@
+(function(){
+    //sync
+    function addSync(x,y){
+        console.log(`   [@service] processing ${x} and ${y}`);
+        var result = x + y;
+        console.log(`   [@service] returning result`);
+        return result;
+    }
+
+    function addSyncClient(x,y){
+        console.log(`[@client] triggering the service`);
+        var result = addSync(x,y);
+        console.log(`[@client] result = ${result}`);
+    }
+
+    globalThis['addSyncClient'] = addSyncClient;
+
+    //Async (using callback)
+    function addAsync(x,y, callback){
+        console.log(`   [@service] processing ${x} and ${y}`);
+        setTimeout(function(){
+            var result = x + y;
+            console.log(`   [@service] returning result`);
+            callback(result);
+        }, 4000);
+    }
+
+    function addAsyncClient(x,y){
+        console.log(`[@client] triggering the service`);
+        addAsync(x,y, function(result){
+            console.log(`[@client] result = ${result}`);
+        });
+    }
+
+    globalThis['addAsyncClient'] = addAsyncClient;
+
+})()

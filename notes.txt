@@ -180,3 +180,5 @@ ES6 (ES2015 / ECMAScript 2015 / ESNext )
 
 http://es6-features.org
 
+Async Operation
+    Initiated but not waited for its completion
