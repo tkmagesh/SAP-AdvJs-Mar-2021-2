@@ -129,6 +129,23 @@ Function Invocation Patterns  (6 patterns)
 
     As an  immediately Invoked Function Expression (IIFE)
 
+    Using the 'new' keyword (Constructor Function)
+
 
 Pure Function
     If a function invocation can be replaced with the result of the function without affecting the outcome.
+
+Constructor Function
+    class like infrastructure in JS
+    invoked using the 'new' keyword
+        - this -> new object
+        - this -> returned by default
+
+Inheritance (prototypal inheritance)
+    prototype hopping
+        happens only when an attribute value is READ
+
+    DONOT use __proto__ in your code
+        1. How will I have access to the base object?
+        2. why __proto__ attribute is accessible to us?
+                Because, "hiding anything in javascript is costly"
