@@ -118,9 +118,28 @@ describe('Sort', function(){
 
 });
 
-/* describe('Filter', function(){
-    describe('filter costly products', function(){
-        //filter();
-        console.table(products);
+describe('Filter', function(){
+    describe('filter stationary products', function(){
+        function filterStationaryProducts(){
+            var result = [];
+            for(var i = 0; i < products.length; i++)
+                if (products[i].category === 'stationary') 
+                    result.push(products[i]);
+            return result;
+        }
+        var stationaryProducts = filterStationaryProducts();
+        console.table(stationaryProducts);
     });
-}); */
+    describe('filter any list by any criteria', function(){
+        function filter(/*  */){
+            /*  */
+        }
+        describe('filter costly products [cost > 50]', function(){
+
+        });
+
+        describe('filter understocked products [units < 50]', function(){
+            
+        })
+    })
+});
