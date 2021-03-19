@@ -23,6 +23,14 @@ function describe(title, fn){
     console.groupEnd();
 }
 
+function describeGroup(groupedObj){
+    for(var key in groupedObj){
+        describe('Key - [' + key + ']', function(){
+            console.table(groupedObj[key]);
+        });
+    }
+}
+
 describe('Default List', function(){
     console.table(products);
 });
@@ -206,6 +214,29 @@ describe('groupBy', function(){
         }
 
         var productsByCategory = productsGroupedByCategory();
-        console.log(productsByCategory);
+        describeGroup(productsByCategory);
     });
-})
+    describe('Any list by any key', function(){
+        function groupBy(list, keySelector){
+            var result = {};
+            for(var i=0; i<list.length; i++){
+                var key = keySelector(list[i]);
+                /* 
+                    if (typeof result[key] === 'undefined')
+                        result[key] = [];
+                */
+                result[key] = result[key] || [];
+                result[key].push(list[i]);
+            }
+            return result;
+        }
+
+        describe('products by cost', function(){
+            function costKeySelector (p){
+                return p.cost > 50 ? 'costly' : 'affordable'
+            }
+            var productsByCost = groupBy(products, costKeySelector);
+            describeGroup(productsByCost);
+        });
+    });
+});

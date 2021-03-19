@@ -151,3 +151,11 @@ Inheritance (prototypal inheritance)
             
         2. why __proto__ attribute is accessible to us?
                 Because, "hiding anything in javascript is costly"
+
+
+a || b
+    return a if a is 'truthy' else b is returned (irrespective of the value of b)
+
+truthy
+    if the boolean equivalent of a value is true, then the value is 'truthy'
+    if the boolean equivalent of a value is false, then the value is 'falsy'
