@@ -3,9 +3,13 @@ var products = [
 	{id : 9, name : 'Ten', cost : 70, units : 70, category : 'stationary'},
 	{id : 3, name : 'Len', cost : 60, units : 60, category : 'grocery'},
 	{id : 5, name : 'Zen', cost : 30, units : 30, category : 'grocery'},
-	{id : 1, name : 'Ken', cost : 20, units : 80, category : 'utencil'},
-    {id : 7, name : 'Mouse', cost : 100, units : 20, category : 'electronics'}
+	{id : 1, name : 'Ken', cost : 20, units : 80, category : 'utencil'}
 ];
+
+/* 
+
+    {id : 7, name : 'Mouse', cost : 100, units : 20, category : 'electronics'}
+*/
 
 /* 
 1. sort
@@ -131,6 +135,7 @@ describe('Filter', function(){
         console.table(stationaryProducts);
     });
     describe('filter any list by any criteria', function(){
+        /* Specification Pattern */
         function filter(list, predicate){
             var result = [];
             for(var i = 0; i < list.length; i++)
@@ -138,28 +143,69 @@ describe('Filter', function(){
                     result.push(list[i]);
             return result;
         }
-        describe('filter costly products [cost > 50]', function(){
+
+        //composite pattern
+        function negate(predicate){
+            return function(){
+                return !predicate.apply(this, arguments);
+            }
+        }
+
+        describe('Products by cost', function(){
             var costlyProductPredicate = function(p){
                 return p.cost > 50;
             };
-            var costlyProducts = filter(products, costlyProductPredicate);
-            console.table(costlyProducts);
+            describe('filter costly products [cost > 50]', function(){
+                var costlyProducts = filter(products, costlyProductPredicate);
+                console.table(costlyProducts);
+            });
+
+            describe('filter affordable products [!costlyProduct]', function(){
+                /* var affordableProductPredicate = function(p){
+                    return !costlyProductPredicate(p)
+                } */
+                var affordableProductPredicate = negate(costlyProductPredicate);
+                var affordableProducts = filter(products, affordableProductPredicate);
+                console.table(affordableProducts);
+            })
         });
 
-        describe('filter affordable products', function(){
-
-        })
-
-        describe('filter understocked products [units < 50]', function(){
+        describe('Products by units', function(){
             var understockedProductPredicate = function(p){
                 return p.units < 50;
             };
-            var underStockedProducts = filter(products, understockedProductPredicate);
-            console.table(underStockedProducts);
-        })
+            describe('filter understocked products [units < 50]', function(){
+                var underStockedProducts = filter(products, understockedProductPredicate);
+                console.table(underStockedProducts);
+            })
 
-        describe('filter well stocked products', function(){
-
-        })
+            describe('filter well stocked products [!underStockedProduct]', function(){
+                /* var wellStockedProductPredicate = function(p){
+                    return !understockedProductPredicate(p);
+                }; */
+                var wellStockedProductPredicate = negate(understockedProductPredicate);
+                var wellStockedProducts = filter(products, wellStockedProductPredicate);
+                console.table(wellStockedProducts);
+            })
+        });
     })
 });
+
+describe('groupBy', function(){
+    describe('products by category', function(){
+        function productsGroupedByCategory(){
+            var result = {
+                stationary : [],
+                grocery : [],
+                utencil : []
+            }
+            for(var i=0; i<products.length; i++){
+                result[products[i].category].push(products[i]);
+            }
+            return result;
+        }
+
+        var productsByCategory = productsGroupedByCategory();
+        console.log(productsByCategory);
+    });
+})
