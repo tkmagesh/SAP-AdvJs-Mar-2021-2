@@ -182,3 +182,8 @@ http://es6-features.org
 
 Async Operation
     Initiated but not waited for its completion
+
+1. callbacks
+2. promises
+3. async await
+4. observables (rxjs)
