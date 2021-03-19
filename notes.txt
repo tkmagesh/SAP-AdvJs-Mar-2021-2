@@ -147,5 +147,7 @@ Inheritance (prototypal inheritance)
 
     DONOT use __proto__ in your code
         1. How will I have access to the base object?
+            ConstructorFunction.prototype
+            
         2. why __proto__ attribute is accessible to us?
                 Because, "hiding anything in javascript is costly"
